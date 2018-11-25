@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+    <title>Document</title>
+  </head>
+      <style>
+      div{ text-decoration-style: solid;
+        font-size: 30px;
+        font-weight: bold;
+        font-style: oblique;
+      }
+      p{
+        border-style: dashed;
+        border-radius: 20px;
+      }
+      </style>
+      <body>
+              <div>{{ques.question_text}}</p>
+              <p>option 1: {{ques.option1}}</p>
+              <p>option 2: {{ques.option2}}</p>
+              <p>option 3: {{ques.option3}}</p>
+              <p>option 4: {{ques.option4}}</p>
+              <p>$x^{2}+x^{3}+\int_{0}^{2}$sin(x)dx
+
+              <select class="" name="option">
+                <option value="Null">Please Select The Correct Option</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+                <option value="option4">Option 4</option>
+
+              </select>
+\[
+\lim_{x\rightarrow0}\frac{x^{2}+sin(x)}{cos(x)+\intop_{0}^{2}tan^{2}(x)}
+\]
+</p>
+      </body>
+
+      <br>
+      <div>
+
+
+
+
+    </div>
+
+</html>

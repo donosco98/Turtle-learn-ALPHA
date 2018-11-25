@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+      <script>
+            var URL = 'http://127.0.0.1:8000/list/quiz/get_data';
+        </script>
+
+  </head>
+      <style>
+        div{ text-decoration-style: solid;
+          font-size: 30px;
+          font-weight: bold;
+          font-style: oblique;
+        }
+        {
+          border-style: dashed;
+          border-radius: 20px;
+        }
+
+        .container{
+          display: flex;
+        }
+
+        .something{
+          margin: 0 auto;
+        }
+        </style>
+        <body>
+
+
+
+
+{%block content%}
+          <div class="container">
+
+
+              <div id="display"><div id="question">{{ques.question_text}}</div>
+               {%if ques.question_text_image%}
+
+                 <img src="{{ques.question_text_image.url}}" class="img-fluid" alt="Responsive image" style="width:300px;height:200px;">
+               {%endif%}
+                <form method="post" action enctype="multipart/form-data" id="radio" action="" onsubmit="return myfunction(this.id)">
+                  {%csrf_token%}
+
+                    <p>  <input type="radio" name="options" id="2" value="option2">option 2: {{ques.option2}}</input></p>
+
+                    <p>  <input type="radio" name="options" id="1" value="option1">option 1: {{ques.option1}}</input></p>
+                    <p>  <input type="radio" name="options" id="3" value="option3">option 3: {{ques.option3}}</input></p>
+                    <p>  <input type="radio" name="options" id="4" value="option4">option 4: {{ques.option4}}</input></p>
+                    <p>  <input type="radio" name="options" id="5" value="option5">I dont want to be evaluted for this question</input></p>
+                          <input type="text" name="hash" value="">
+                    </form>
+
+            </div>
+              <script type="text/javascript">
+                  document.getElementById({{num}}).checked = true;
+              </script>
+
+              <div class="something">
+            <form class="" action="" method="post">
+              {%csrf_token%}
+                {% for qs in quest %}
+                    <button type="button" value="" id="{{qs.id}}">{{qs.id}}</button>
+                    <script>
+                    function updatePieFact(id){
+                      var updateDay = $('input[name=options]:checked').val();
+                      var ide=id
+                      var idea={{idea}}
+                      var data = {'pieFact': updateDay,'ide':ide,'idea':idea};
+                      $.post(URL, data, function(response){
+                        if(response === 'success'){ alert('you are leaving this page!');
+                            window.location.replace(id);
+                       }
+                        else{ alert('Error! :('); }
+                      });
+                    }
+                                $(document).ready(function(){
+                                $('#{{qs.id}}').click(function(){
+                                var id = $(this).attr('id');
+                          updatePieFact(id);
+
+
+
+                      });
+
+                  });
+                  </script>
+                {% endfor %}
+
+
+
+                  </form>
+                        <script type="text/javascript">
+                          function func(id){
+                              var ur=id;
+                              alert(ur)
+                              return(urs)
+
+
+                          }
+                          function myfunction(id){
+
+
+                            return false;
+                          }
+
+                        </script>
+
+
+
+
+
+              </div>
+
+            </div>
+
+
+
+
+
+
+        <br>
+{%endblock content%}
+
+      </body>
+
+
+
+</html>

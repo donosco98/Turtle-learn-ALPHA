@@ -1,0 +1,123 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Montserrat';
+}
+
+/* header{
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    
+} */
+
+body{
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+    
+}
+
+/* .backgrad{
+    display: block;
+    margin: 20%;
+    background-image: linear-gradient(141deg, #9fb8ad 0%, #1fc8db 51%, #2cb5e8 75%);
+} */
+
+header{
+    display: block;
+    width: auto;
+    height: 5%;
+    background: #1d251e4b;
+}
+
+/* header tag has been used to provide the background blur effect */
+
+.logoTL{
+    display: block;
+    max-width: 15%;
+    height: auto;
+    padding-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    /* background: #1d251e4b; */
+}
+
+/* .logoTL has been used to center the image and make it more responsive */
+
+.centr{
+    margin-left : 10%;
+    margin-right: 10%;
+    margin-top: 4%;
+    background-color: #1d251e4b;
+}
+
+/* .centr creates the main form, gives it the correct margin. */
+
+h1{
+    text-align: center;
+    font-size: 2vw;
+    padding-top: 2%;
+}
+
+h2{
+    margin: 2.5% 5%;
+    font-size: 1.5vw;
+    padding-top: 1%;
+}
+
+.txtar{
+    max-width: 90%;
+    height: 20%;
+    max-height: 90%;
+    font-size: 2vh;
+    background: #72ac7a4b;
+    color: black;
+}
+
+/* .txtar has been used to style the text areas along with the form-control class from bootstrap */
+
+.rule1{
+    width: 50%;
+    height: 1px;
+    background-color: rgba(0, 0, 255, 0.174);
+    box-shadow: 1px;
+    margin-left: 15%;
+}
+
+/* Creates the blurred line below the main heading */
+
+form{
+    padding-bottom: 10%;
+}
+
+.centra{
+    margin-left : 10%;
+    margin-right: 10%;
+    margin-top: 4%;
+}
+
+.sze{
+    margin: 2% auto;
+    width: 50%;
+    height: 10%;
+}
+
+.defn{
+    appearance: none;
+    margin-top: 5%;
+    margin-left: 45%;
+    height: 10%;
+    width: 10%;
+}
+
+.subBut{
+    display: flex;
+    padding-top: 10%;
+}
+
+/* used the flexbox style to create a large text-button */
+
+.btn{
+    flex: 1;
+}
+
+/* .appearq, .appearop1, .appearop2, .appearop3, .appearop4{
+    display: none;
+} */

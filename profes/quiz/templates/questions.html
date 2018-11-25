@@ -1,0 +1,26 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Document</title>
+  </head>
+      <style>
+      h2,h1,form{ text-decoration-style: solid;
+        font-size: 30px;
+        text-indent: 500px;
+      }
+      </style>
+      <body>
+          <h1><u>QUESTIONS</u></h1>
+    <!--      <form action="/snippet/" method="post">{%csrf_token%}<input type="submit" value="ADD BOOKS TO THE LIST"></form> -->
+          <br><br><br>
+          {% for qs in ques %}
+            <h2>*<i>{{qs.id}}<a href={{qs.id}}>go to question</a></i></h2>
+
+          {%endfor%}
+      </body>
+
+
+
+</html>

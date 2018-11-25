@@ -1,0 +1,152 @@
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="dropdown.js" type="text/javascript"></script>
+    <!-- <script src="image.js" type="text/javascript"></script> -->
+    <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+    
+        <header>
+            
+
+        </header> 
+        <img src="Images/Turtle Learn Logo.png" class="logoTL "/>  
+    <div class="centr">
+            
+        <form method="POST" action enctype="multipart/form-data">
+            <h1 class="mx-auto">Question Entry Form : </h1>
+            <hr class="rule1 mx-auto" noshade>
+            
+            <!-- Enter The Question -->
+
+            <h2 class="">Question :</h2> 
+
+            <textarea name="Question" id="" cols="30" rows="10" class="txtar form-control mx-auto"></textarea>
+
+                <!-- Image Required For The Question? -->
+
+            <!-- <select name="question image" id="qimage" class="form-control sze">
+                <option>Do You Want To Add an Image ?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select> -->
+
+            <div class="sze appearq" id="qimg">
+                <label for="">Add Image :</label>
+                <input type="file" name="pic" accept="image/*">
+            </div>
+
+            <!-- Enter The First Option -->
+
+            <h2>Option 1:</h2> 
+
+            <textarea name="option1" id="" cols="10" rows="10" class="txtar form-control mx-auto"></textarea>
+
+            <!-- <select name="question image" id="questionimage1" class="form-control sze">
+                <option>Do You Want To Add an Image ?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select> -->
+
+            <div class="sze appearop1">
+                <label for="">Add Image :</label>
+                <input type="file" name="pic" accept="image/*">
+            </div>
+
+            <!-- Enter The Second Option -->
+
+            <h2>Option 2:</h2> 
+
+            <textarea name="option2" id="" cols="10" rows="10" class="txtar form-control mx-auto"></textarea>
+
+            <!-- <select name="question image" id="questionimage2" class="form-control sze">
+                <option>Do You Want To Add an Image ?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select> -->
+
+            <div class="sze appearop2">    
+                <label for="">Add Image :</label>
+                <input type="file" name="pic" accept="image/*">
+            </div>
+            <!-- Enter The Third Option -->
+            
+            <h2>Option 3:</h2> 
+
+            <textarea name="option3" id="" cols="10" rows="10" class="txtar form-control mx-auto"></textarea>
+
+            <!-- <select name="question image" id="questionimage3" class="form-control sze">
+                <option>Do You Want To Add an Image ?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select> -->
+
+            <div class="sze appearop3">
+                <label for="">Add Image :</label>
+                <input type="file" name="pic" accept="image/*">
+            </div>
+
+            <!-- Enter The Fourth Option -->
+
+            <h2>Option 4:</h2> 
+
+            <textarea name="option4" id="" cols="10" rows="10" class="txtar form-control mx-auto"></textarea>
+
+            <!-- <select name="question image" id="questionimage4" class="form-control sze">
+                <option>Do You Want To Add an Image ?</option>
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+            </select> -->
+
+            <div class="sze appearop4">
+                <label for="">Add Image :</label>
+                <input type="file" name="pic" accept="image/*">
+            </div>
+
+            <!-- Select The correct Answer -->
+
+            <h2>Select The Correct Answer:</h2>
+            <select name="CorrectAns" id="Answer" class="form-control sze">
+                <option value="Null">Please Select The Correct Option</option>
+                <option value="option1">Option 1</option>
+                <option value="option2">Option 2</option>
+                <option value="option3">Option 3</option>
+                <option value="option4">Option 4</option>
+            </select>
+
+            <!-- Select The Subject, chapter and the corresponding Subtopic -->
+
+            <h2>Select The Subject :</h2>
+            <div class="centra">
+                <select name="subjects" id="subject" class="form-control">
+                    <option value="null">Please Select A Subject</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="Mathematics">Mathematics</option>
+                </select>
+                <select name="chapters" id="chapter" class="form-control">
+                <!-- gets auto-filled depending on the choices -->
+                </select>    
+                <select name="subtopics" id="subtopic" class="form-control">
+                <!-- gets auto-filled depending on the choices -->
+                </select>
+            </div>
+
+            <!-- Select The Appropiate Exam -->
+
+            <h2>Select The Exam :</h2>
+            <select name="exams" id="exam" class="form-control sze">
+                <option value="JEEMAIN">JEE Mains</option>
+            </select>
+
+            <!-- The Submit Button -->
+            <div class="subBut">
+                <button class="btn btn-danger btn-lg" type="submit">Submit !</button>
+            </div>
+        </form>
+    </div>    
+</body>
+</html>
