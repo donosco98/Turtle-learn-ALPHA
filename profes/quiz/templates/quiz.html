@@ -13,7 +13,9 @@
       <script>
             var URL = 'http://127.0.0.1:8000/list/quiz/get_data';
         </script>
-
+    <script type="text/javascript" src="/static/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="/static/jquery.countdownTimer.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.countdownTimer.css" />
   </head>
       <style>
         div{ text-decoration-style: solid;
@@ -123,8 +125,16 @@
 
             </div>
 
-
-
+              <div id="countdowntimer"><span id="hm_timer"><span></div>
+                <script type="text/javascript">
+                $(function(){
+	                   $("#hm_timer").countdowntimer({
+                          hours : 3‚
+		                      minutes : 10‚
+                          size : "lg"
+	                         });
+                  });
+                </script>
 
 
 
