@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate,login
 from . models import Question,Test
 from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.csrf import csrf_exempt
-
+from django.contrib.auth.decorators import login_required
 from django.views.generic import View
 from .forms import UserForm
 
@@ -73,24 +73,28 @@ def add_image(request,id):
 
 
 
-
-
+@login_required
 @csrf_exempt
 def quiz(request,id):
     ques=Question.objects.get(pk=id)
     idea=id
-    quest=Question.objects.all()
+    quest_chem=Question.objects.filter(exam__name="jee main 1",subject="Chemistry")
+    quest_phy=Question.objects.filter(exam__name="jee main 1",subject="Physics")
+    quest_math=Question.objects.filter(exam__name="jee main 1",subject="Mathematics")
 
+
+    test=Test.objects.get(name="jee main 1")
+    print(test.time)
     option=request.POST.get('hash')
     print(option)
     num=ques.response
     num=num[6]
     print(num)
 
-    return render(request,'quiz.html',{'ques':ques,'quest':quest,'idea':idea,'num':num})
+    return render(request,'quiz.html',{'ques':ques,'quest_chem':quest_chem,'quest_phy':quest_phy,'quest_math':quest_math,'idea':idea,'num':num,'test':test,})
 
 def result(request):
-    quest=Question.objects.all()
+    quest=Question.objects.filter(exam__name="jee main 1")
     right=0
     wrong=0
     attempted=0
@@ -98,13 +102,18 @@ def result(request):
     for qs in quest :
         if qs.response==qs.answer:
             right=right+1
-
+            qs.status="right"
+            qs.save()
         elif qs.response=="option5":
             attempted=attempted+1
+
         else:
             wrong=wrong+1
-
-    return render(request,'result.html',{'right':right,'wrong':wrong,'attempted':attempted})
+            qs.status="wrong"
+            qs.save()
+        ques_wrong=Question.objects.filter(status="wrong")
+        ques_right=Question.objects.filter(status="right")
+    return render(request,'result.html',{'right':right,'wrong':wrong,'attempted':attempted,'ques_right':ques_right,'ques_wrong':ques_wrong})
 
 
 
@@ -124,18 +133,40 @@ def data(request):
     # nothing went well
     return HttpRepsonse('FAIL!!!!!')
 
+@csrf_exempt
+def data2(request):
+
+    if request.method == 'POST':
+        if 'totalSeconds' in request.POST:
+            Fact = request.POST['totalSeconds']
+            Test.objects.filter(name="jee main 1").update(time=int(Fact))            #Question.objects.filter(pk=idea).update(response=pieFact)
+            qtime=request.POST['questionTime']
+            id2=request.POST['id2']
+            Question.objects.filter(pk=id2).update(time_taken=int(qtime))
+
+            #return redirect('http://127.0.0.1:8000/list/')
+            return HttpResponse('success') # if everything is OK
+    # nothing went well
+    return HttpRepsonse('FAIL!!!!!')
+
 
 
 def quiz_list(request):
-    test=Test.objects.all()
+    test=Test.objects.filter(name="jee main 1")
     qs=Question.objects.all()
+    q1=Question.objects.all()[:1].get()
+    id=q1.id
     print(qs)
+    for t in test :
+        t.time=3600
+        t.save()
 
     for q in qs:
         q.response="option5"
+        q.time_taken=0
         q.save()
 
-    return render(request,"landing.html",{'test':test})
+    return render(request,"landing.html",{'test':test,'ide':id})
 
 
 
@@ -160,6 +191,6 @@ class UserFormView(View):
 
             if user is not None:
                 login(request,user)
-                return redirect("http://127.0.0.1:8000/landing")
+                return redirect("http://127.0.0.1:8000/l")
 
         return render(request,self.template_name,{'form':form})

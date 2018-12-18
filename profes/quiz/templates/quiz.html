@@ -11,7 +11,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
       <script>
-            var URL = 'http://127.0.0.1:8000/list/quiz/get_data';
+            var URL1 = 'http://127.0.0.1:8000/list/quiz/get_data';
+            var URL2 = 'http://127.0.0.1:8000/list/quiz/get_data2';
+
         </script>
     <script type="text/javascript" src="/static/jquery-2.0.3.js"></script>
     <script type="text/javascript" src="/static/jquery.countdownTimer.js"></script>
@@ -70,7 +72,9 @@
               <div class="something">
             <form class="" action="" method="post">
               {%csrf_token%}
-                {% for qs in quest %}
+              <h2>Chemistry</h2>
+                {% for qs in quest_chem %}
+
                     <button type="button" value="" id="{{qs.id}}">{{qs.id}}</button>
                     <script>
                     function updatePieFact(id){
@@ -78,7 +82,7 @@
                       var ide=id
                       var idea={{idea}}
                       var data = {'pieFact': updateDay,'ide':ide,'idea':idea};
-                      $.post(URL, data, function(response){
+                      $.post(URL1, data, function(response){
                         if(response === 'success'){ alert('you are leaving this page!');
                             window.location.replace(id);
                        }
@@ -96,10 +100,111 @@
 
                   });
                   </script>
+
                 {% endfor %}
 
+                <h2>Physics</h2>
+                  {% for qs in quest_phy %}
+
+                      <button type="button" value="" id="{{qs.id}}">{{qs.id}}</button>
+                      <script>
+                      function updatePieFact(id){
+                        var updateDay = $('input[name=options]:checked').val();
+                        var ide=id
+                        var idea={{idea}}
+                        var data = {'pieFact': updateDay,'ide':ide,'idea':idea};
+                        $.post(URL1, data, function(response){
+                          if(response === 'success'){ alert('you are leaving this page!');
+                              window.location.replace(id);
+                         }
+                          else{ alert('Error! :('); }
+                        });
+                      }
+                                  $(document).ready(function(){
+                                  $('#{{qs.id}}').click(function(){
+                                  var id = $(this).attr('id');
+                            updatePieFact(id);
 
 
+
+                        });
+
+                    });
+                    </script>
+
+                  {% endfor %}
+
+                  <h2>Mathematics</h2>
+                    {% for qs in quest_math %}
+
+                        <button type="button" value="" id="{{qs.id}}">{{qs.id}}</button>
+                        <script>
+                        function updatePieFact(id){
+                          var updateDay = $('input[name=options]:checked').val();
+                          var ide=id
+                          var idea={{idea}}
+                          var data = {'pieFact': updateDay,'ide':ide,'idea':idea};
+                          $.post(URL1, data, function(response){
+                            if(response === 'success'){ alert('you are leaving this page!');
+                                window.location.replace(id);
+                           }
+                            else{ alert('Error! :('); }
+                          });
+                        }
+                                    $(document).ready(function(){
+                                    $('#{{qs.id}}').click(function(){
+                                    var id = $(this).attr('id');
+                              updatePieFact(id);
+
+
+
+                          });
+
+                      });
+                      </script>
+
+                    {% endfor %}
+                <button type="button" value="" id="submit">submit</button>
+                  <script type="text/javascript">
+                      $(document).ready(function(){
+                        $('#submit').click(function(){
+                          var url = $(location).attr('href');
+
+                          var tu=url.charAt( url.length - 1 )+url.charAt( url.length - 2 );
+
+
+                          function updatePieFact(id){
+                            var updateDay = $('input[name=options]:checked').val();
+                            var ide=id
+                            var idea={{idea}}
+                            var data = {'pieFact': updateDay,'ide':ide,'idea':idea};
+                            $.post(URL1, data, function(response){
+                              if(response === 'success'){ alert('you are leaving this page!');
+                                window.location.replace("submit");                             }
+                              else{ alert('Error! :('); }
+                            });
+                          }
+
+                            updatePieFact(tu);
+
+
+
+                            });
+
+                          });
+                  </script>
+                  <button type="button" value="" id="home">Go back to home page</button>
+                    <script type="text/javascript">
+                        $(document).ready(function(){
+                          $('#home').click(function(){
+                           window.location.href = "http://127.0.0.1:8000/landing";
+
+
+
+                              });
+
+                            });
+                    </script>
                   </form>
                         <script type="text/javascript">
                           function func(id){
@@ -116,6 +221,68 @@
                           }
 
                         </script>
+                        <script>
+                            var temp=parseInt({{test.time}}, 10)
+                            var totalSeconds = temp;
+                            //input begins with 3 hours.
+                            //ideally should be a django-python variable.
+
+                            var interval = setInterval(countDown, 1000);
+
+                            function updatePieFact2(totalSeconds,questionTime){
+                              var id2=parseInt({{ques.id}},10)
+
+                            var data = {'totalSeconds': totalSeconds,'questionTime':questionTime,'id2':id2};
+                              $.post(URL2, data, function(response){
+                                if(response === 'success'){
+
+                               }
+                                else{ alert('Error! :('); }
+                              });
+                            }
+                            //exectues the countDown function every 1s.
+
+                            var questionTime =parseInt({{ques.time_taken}},10);
+                            function countDown() {
+                                totalSeconds = totalSeconds - 1;
+
+
+                                questionTime++; //displays the total seconds a student spent on a particular question.
+                                updatePieFact2(totalSeconds,questionTime);
+                                if(totalSeconds === -1){
+                                    clearInterval(interval);
+                                    window.location.replace("submit");
+                                    return;
+                                }
+                                //this code block activates the event that is supposed to happen, once the time limit completes.
+
+                                var seconds = totalSeconds%60 ;
+                                var minutes = Math.floor(totalSeconds/60);
+                                var hours = Math.floor(minutes/60);
+
+                                minutes %= 60;
+                                hours %= 60;
+
+                                //the above code block is mathematics for determinig time in minutes, hours and seconds.
+
+                                var hour = " hours ";
+                                if(hours===0){hour = " hour ";}
+                                var minute = " minutes ";
+                                if(minutes===0){minute = " minute ";}
+
+                                //this code block is basic grammar interpretation.
+
+                                document.getElementById("count").innerHTML = hours + hour + minutes + minute + seconds + " seconds" + "<br/>" + "Total Seconds = " + totalSeconds+ "<br/>" + "Total Time Spent On This Question: " + questionTime + " seconds";
+
+                                //this code puts the code onto an HTML element with the ID = "count". This is reposnible for the display of time on the webpage.
+                            }
+                        </script>
+
+
+                            <div class="container" id="count">
+                                Does this work?
+                            </div>
+
 
 
 
@@ -125,16 +292,6 @@
 
             </div>
 
-              <div id="countdowntimer"><span id="hm_timer"><span></div>
-                <script type="text/javascript">
-                $(function(){
-	                   $("#hm_timer").countdowntimer({
-                          hours : 3‚
-		                      minutes : 10‚
-                          size : "lg"
-	                         });
-                  });
-                </script>
 
 
 

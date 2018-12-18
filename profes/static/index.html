@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Javascript Countdown Timer</title>
+    
+    <style>
+        .container{
+            text-align: center;
+            font-family: monospace;
+            font-size: 3vh;
+            border: 2px solid black;
+            background-color: rgba(2, 2, 185, 0.418);
+        }
+        body{
+            background-color: orange;
+        }
+    </style>
+    
+    <script>
+        var totalSeconds = 3600;
+        //input begins with 3 hours.
+        //ideally should be a django-python variable.
+
+        var interval = setInterval(countDown, 1000);
+        //exectues the countDown function every 1s.
+        
+        var questionTime = 0;
+        function countDown() {
+            totalSeconds = totalSeconds - 1;
+            questionTime++; //displays the total seconds a student spent on a particular question.
+
+            if(totalSeconds === -1){
+                clearInterval(interval);
+                document.getElementById("count").innerHTML = "OOPS! Time's UP.";
+                document.getElementById("body").innerHTML = "Time's Up";
+                return;
+            }
+            //this code block activates the event that is supposed to happen, once the time limit completes.
+
+            var seconds = totalSeconds%60 ;
+            var minutes = Math.floor(totalSeconds/60);
+            var hours = Math.floor(minutes/60);
+
+            minutes %= 60;
+            hours %= 60;
+            
+            //the above code block is mathematics for determinig time in minutes, hours and seconds.
+
+            var hour = " hours ";
+            if(hours===0){hour = " hour ";}
+            var minute = " minutes ";
+            if(minutes===0){minute = " minute ";}
+
+            //this code block is basic grammar interpretation.        
+
+            document.getElementById("count").innerHTML = hours + hour + minutes + minute + seconds + " seconds" + "<br/>" + "Total Seconds = " + totalSeconds+ "<br/>" + "Total Time Spent On This Question: " + questionTime + " seconds";
+        
+            //this code puts the code onto an HTML element with the ID = "count". This is reposnible for the display of time on the webpage.
+        }
+    </script>
+
+</head>
+<body id="body">
+    
+    <div class="container" id="count">
+        Does this work?
+    </div>
+                
+            </body>
+            
+            </html>

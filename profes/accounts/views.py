@@ -19,7 +19,7 @@ def login_view(request):
 
         login(request,user)
         print(request.user.is_authenticated)
-        return redirect("http://127.0.0.1:8000/list/")
+        return redirect("http://127.0.0.1:8000/landing/")
     return render(request,"register.html",{'form':form})
 
 

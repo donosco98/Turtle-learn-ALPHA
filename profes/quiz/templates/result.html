@@ -1,22 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});
+  </script>
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script>
     <title>Document</title>
   </head>
       <style>
-      h2,h1,form{ text-decoration-style: solid;
+      h2,h1{ text-decoration-style: solid;
         font-size: 30px;
         text-indent: 500px;
       }
-      </style>
+      div{
+            border-style:dashed;
+            border-width: thin;
+
+
+
+      }
+      p{
+          text-align: center;
+
+      }
+        </style>
       <body>
-          CONGRATS! YOU HAVE SUCCESSFULLY COMPLETED THE Test
+          <h1>CONGRATS! YOU HAVE SUCCESSFULLY COMPLETED THE Test</h1>
           <h1>RESULTS</h1>
           <p>number of right questions:{{right}}</p>
           <p>number of wrong questions:{{wrong}}</p>
           <p>number of questions unattempted:{{attempted}}</p>
+          <h2>ANALYSIS OF WRONG QUESTIONS</h2>
+          {% for q in ques_wrong %}
+          <div class="">
 
+
+            <p>{{q.id}}.{{q.question_text}}</p>
+            <p>difficulty:{{q.difficulty}}</p>
+            <p>Subject:{{q.subject}}</p>
+            <p>chapter:{{q.chapter}}</p>
+
+            <p>subtopic:{{q.subtopic}}</p>
+                    <p>
+                      time taken:
+                      <script type="text/javascript">
+                        var time=parseInt({{q.time_taken}},10)
+                        var time_sec=time%60;
+                        var time_min=Math.floor(time/60);
+                        document.write(time_min);
+                        document.write(" minutes ");
+                        document.write(time_sec);
+                        document.write(" seconds");
+                      </script>
+                    </p>
+              </div>
+
+          {%endfor%}
 
       </body>
 

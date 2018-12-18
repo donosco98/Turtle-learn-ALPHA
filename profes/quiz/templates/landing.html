@@ -4,6 +4,7 @@
 <head>
 
     <title>Document</title>
+      <script type="text/javascript" src="/static/jquery-2.0.3.js"></script>
   </head>
       <style>
       h2,h1,form{ text-decoration-style: solid;
@@ -16,8 +17,15 @@
     <!--      <form action="/snippet/" method="post">{%csrf_token%}<input type="submit" value="ADD BOOKS TO THE LIST"></form> -->
           <br><br><br>
           {% for ts in test %}
-            <h2>*<i>{{ts.id}}<a href={{ts.id}}>Start the test</a></i></h2>
-
+            <h2>*<i>{{ts.name}}</a></i></h2>
+            <button type="button" value="" id="home">go to the test</button>
+              <script type="text/javascript">
+                            $(document).ready(function(){
+                            $('#home').click(function(){
+                                window.location.href = "http://127.0.0.1:8000/list/quiz/"+{{ide}};
+                                });
+                              });
+            </script>
           {%endfor%}
       </body>
 
