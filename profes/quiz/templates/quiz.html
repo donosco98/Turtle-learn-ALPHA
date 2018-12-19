@@ -60,7 +60,7 @@
                     <p>  <input type="radio" name="options" id="1" value="option1">option 1: {{ques.option1}}</input></p>
                     <p>  <input type="radio" name="options" id="3" value="option3">option 3: {{ques.option3}}</input></p>
                     <p>  <input type="radio" name="options" id="4" value="option4">option 4: {{ques.option4}}</input></p>
-                    <p>  <input type="radio" name="options" id="5" value="option5">I dont want to be evaluted for this question</input></p>
+                    <p style="visibility: hidden">  <input type="radio" name="options" id="5" value="option5" style="visibility: hidden">I dont want to be evaluted for this question</input></p>
                           <input type="text" name="hash" value="">
                     </form>
 
@@ -205,7 +205,21 @@
 
                             });
                     </script>
+                    <button type="button" value="" id="clear">clear the options</button>
+                      <script type="text/javascript">
+                          $(document).ready(function(){
+                            $('#clear').click(function(){
+
+                                    document.getElementById("5").checked = true;
+
+
+                                });
+
+                              });
+                      </script>
                   </form>
+
+
                         <script type="text/javascript">
                           function func(id){
                               var ur=id;
